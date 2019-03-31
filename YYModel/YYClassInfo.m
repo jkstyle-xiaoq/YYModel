@@ -271,22 +271,22 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding) {
 }
 
 - (void)_update {
-    _ivarInfos = nil;
-    _methodInfos = nil;
+//    _ivarInfos = nil;
+//    _methodInfos = nil;
     _propertyInfos = nil;
     
     Class cls = self.cls;
-    unsigned int methodCount = 0;
-    Method *methods = class_copyMethodList(cls, &methodCount);
-    if (methods) {
-        NSMutableDictionary *methodInfos = [NSMutableDictionary new];
-        _methodInfos = methodInfos;
-        for (unsigned int i = 0; i < methodCount; i++) {
-            YYClassMethodInfo *info = [[YYClassMethodInfo alloc] initWithMethod:methods[i]];
-            if (info.name) methodInfos[info.name] = info;
-        }
-        free(methods);
-    }
+//    unsigned int methodCount = 0;
+//    Method *methods = class_copyMethodList(cls, &methodCount);
+//    if (methods) {
+//        NSMutableDictionary *methodInfos = [NSMutableDictionary new];
+//        _methodInfos = methodInfos;
+//        for (unsigned int i = 0; i < methodCount; i++) {
+//            YYClassMethodInfo *info = [[YYClassMethodInfo alloc] initWithMethod:methods[i]];
+//            if (info.name) methodInfos[info.name] = info;
+//        }
+//        free(methods);
+//    }
     unsigned int propertyCount = 0;
     objc_property_t *properties = class_copyPropertyList(cls, &propertyCount);
     if (properties) {
@@ -299,20 +299,20 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding) {
         free(properties);
     }
     
-    unsigned int ivarCount = 0;
-    Ivar *ivars = class_copyIvarList(cls, &ivarCount);
-    if (ivars) {
-        NSMutableDictionary *ivarInfos = [NSMutableDictionary new];
-        _ivarInfos = ivarInfos;
-        for (unsigned int i = 0; i < ivarCount; i++) {
-            YYClassIvarInfo *info = [[YYClassIvarInfo alloc] initWithIvar:ivars[i]];
-            if (info.name) ivarInfos[info.name] = info;
-        }
-        free(ivars);
-    }
+//    unsigned int ivarCount = 0;
+//    Ivar *ivars = class_copyIvarList(cls, &ivarCount);
+//    if (ivars) {
+//        NSMutableDictionary *ivarInfos = [NSMutableDictionary new];
+//        _ivarInfos = ivarInfos;
+//        for (unsigned int i = 0; i < ivarCount; i++) {
+//            YYClassIvarInfo *info = [[YYClassIvarInfo alloc] initWithIvar:ivars[i]];
+//            if (info.name) ivarInfos[info.name] = info;
+//        }
+//        free(ivars);
+//    }
     
-    if (!_ivarInfos) _ivarInfos = @{};
-    if (!_methodInfos) _methodInfos = @{};
+//    if (!_ivarInfos) _ivarInfos = @{};
+//    if (!_methodInfos) _methodInfos = @{};
     if (!_propertyInfos) _propertyInfos = @{};
     
     _needUpdate = NO;
